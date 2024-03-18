@@ -1,0 +1,18 @@
+<%# TODO: Use .slim or .haml format instead of .erb %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to the club buddy, <%= @username %></h1>
+    <p>
+      You have successfully signed up to orders.com.
+      To activate your account, just click the link below.
+    </p>
+    <p>
+      <%= button_to 'Activate', @url, method: :post, form: { origin: @url } %>
+    </p>
+    <p>May the Force be with you!</p>
+  </body>
+</html>
