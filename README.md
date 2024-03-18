@@ -29,16 +29,21 @@ curl -XGET -H "Content-type: application/json" -H "Authorization: TOKEN" 'http:/
 
 ####  List of orders
 ```
-curl -XGET -H "Content-type: application/json" -H "Authorization: 567352a83d51b9c5470c5c45aed8b5a6" 'http://localhost:3000/orders'
+curl -XGET -H "Content-type: application/json" -H "Authorization: TOKEN" 'http://localhost:3000/orders'
 ```
 
 ####  Create a new order
 ```
-curl -XPOST -H "Content-type: application/json" -H "Authorization: 567352a83d51b9c5470c5c45aed8b5a6" -d '{"order": { "customer_id": 2, "ordered_items": [{ "product_id": 2, "quantity": 123 }] }  }' 'http://localhost:3000/orders'
+curl -XPOST -H "Content-type: application/json" -H "Authorization: TOKEN" -d '{"order": { "customer_id": 2, "ordered_items": [{ "product_id": 2, "quantity": 123 }] }  }' 'http://localhost:3000/orders'
+```
+
+#### Run tests
+```
+rspec spec
 ```
 
 ### What can be improved:
 - Add rubocop/breakman, etc.
 - Add more validation to incoming parameters
 - Unify responses in all controllers
-- Make al TODO's in project
+- Make all TODO's in project
