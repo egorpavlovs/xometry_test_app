@@ -5,12 +5,12 @@ class SearchService
 
   def call
     scope = if conditions.present?
-        initial_scope.where(conditions).order(self.class::SORT)
+        initial_scope.where(conditions)
       else
         initial_scope
       end
 
-    Utils::Result.success(paginated_scope(scope))
+    Utils::Result.success(paginated_scope(scope).order(self.class::SORT))
   end
 
   private

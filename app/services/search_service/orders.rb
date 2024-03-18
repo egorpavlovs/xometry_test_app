@@ -13,6 +13,7 @@ class SearchService::Orders < SearchService
   end
 
   def initial_scope
-    @initial_scope ||= Order.joins(:order_items, :customer)
+    # TODO: Move to pg views
+    Order.includes(:customer, order_items: :product)
   end
 end

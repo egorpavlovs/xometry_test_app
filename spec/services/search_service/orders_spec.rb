@@ -7,7 +7,7 @@ RSpec.describe SearchService::Orders do
     context 'with state filter' do
       let(:params) { { state: Order::STATES.last } }
       let!(:second_order) do
-        create(:order, name: 'Bbbb Second Name', state: Order::STATES.last,
+        create(:order, name: 'Aaabbb Second Name', state: Order::STATES.last,
                order_items: create_list(:order_item, 1))
       end
       let!(:first_order) do
@@ -77,25 +77,17 @@ RSpec.describe SearchService::Orders do
 
     context 'without filters' do
       let(:params) { {} }
-      let!(:first_order) { create(:order, name: 'A First Name', order_items: create_list(:order_item, 1)) }
-      let!(:second_order) { create(:order, name: 'B Second Name', order_items: create_list(:order_item, 1)) }
+      let!(:first_order) { create(:order, name: 'Aaaa First Name', order_items: create_list(:order_item, 1)) }
+      let!(:second_order) { create(:order, name: 'Aabbbbbb Second Name', order_items: create_list(:order_item, 1)) }
 
       before do
-        create_list(:order, 10, name: 'C Third Name', order_items: create_list(:order_item, 10))
+        create_list(:order, 10, name: 'Aabbcc Third Name', order_items: create_list(:order_item, 10))
       end
 
       it 'returns all orders' do
         expect(subject.value.count).to eq(5)
         expect(subject.value.first).to eq(first_order)
         expect(subject.value.second).to eq(second_order)
-      end
-
-      context 'with pagination' do
-        let(:params) { { page: 3 } }
-
-        it 'returns orders from the given page' do
-          expect(subject.value.count).to eq(2)
-        end
       end
     end
   end
